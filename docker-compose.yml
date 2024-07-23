@@ -1,0 +1,45 @@
+services:
+  web2:
+    image: nginx:latest
+    ports:
+      - '8081:80'
+    volumes:
+      - ./src:/var/www/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - php2
+    environment:
+      VIRTUAL_HOST: panel.fuckrkn.club
+
+  php2:
+    build: .docker/php
+    volumes:
+      - ./src:/var/www/html
+      - .:/var/www:cached
+
+  db2:
+    image: mysql:8.4
+    restart: always
+    ports:
+      - 3307:3306
+    volumes:
+      - .docker/db/data:/var/lib/mysql
+      - .docker/logs:/var/log/mysql
+      - .docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - .docker/db/sql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: cF6a5Yvxqv&7Z2E!
+      MYSQL_DATABASE: xloving_panel
+      MYSQL_USER: xloving_panel
+      MYSQL_PASSWORD: Hwz^8jeec(twq%QE
+
+  mail2:
+    image: axllent/mailpit:latest
+    ports:
+      - 8026:8025
+      - 1026:1025
+
+networks:
+  default:
+    external: true
+    name: nginx-proxy
