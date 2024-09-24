@@ -50,6 +50,76 @@
                     <span>{{ __('Dashboard') }}</span></a>
             </li>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item {{ Nav::isRoute('orders') }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#mainTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-tasks"></i>
+                    <span>{{ __('Orders') }}</span>
+                </a>
+                <div id="mainTwo" class="collapse {{ Nav::isRoute('orders.index') ? "show" : "" }} {{ Nav::isRoute('orders.create') ? "show" : "" }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('orders.index') }}">Show</a>
+                        <a class="collapse-item" href="{{ route('orders.create') }}">Create</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item {{ Nav::isRoute('tasks') }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#mainOne" aria-expanded="false" aria-controls="collapseOne">
+                    <i class="fas fa-fw fa-tasks"></i>
+                    <span>{{ __('Tasks') }}</span>
+                </a>
+                <div id="mainOne" class="collapse {{ Nav::isRoute('tasks') ? "show" : "" }} {{ Nav::isRoute('tasks.create') ? "show" : "" }}" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('tasks') }}">Show</a>
+                        <!-- <a class="collapse-item" href="{{ route('tasks.create') }}">Create</a> -->
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item {{ Nav::isRoute('units') }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#mainThree" aria-expanded="false" aria-controls="collapseThree">
+                    <i class="fas fa-fw fa-tasks"></i>
+                    <span>{{ __('Units') }}</span>
+                </a>
+                <div id="mainThree" class="collapse {{ Nav::isRoute('units.index') ? "show" : "" }} {{ Nav::isRoute('units.create') ? "show" : "" }}" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('units.index') }}">Show</a>
+                        <a class="collapse-item" href="{{ route('units.create') }}">Create</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item {{ Nav::isRoute('proxies') }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#mainFour" aria-expanded="false" aria-controls="collapseFour">
+                    <i class="fas fa-fw fa-tasks"></i>
+                    <span>{{ __('Proxies') }}</span>
+                </a>
+                <div id="mainFour" class="collapse {{ Nav::isRoute('proxies.index') ? "show" : "" }} {{ Nav::isRoute('proxies.create') ? "show" : "" }}" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('proxies.index') }}">Show</a>
+                        <a class="collapse-item" href="{{ route('proxies.create') }}">Create</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item {{ Nav::isRoute('accounts') }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#mainFive" aria-expanded="false" aria-controls="collapseFive">
+                    <i class="fas fa-fw fa-tasks"></i>
+                    <span>{{ __('Accounts') }}</span>
+                </a>
+                <div id="mainFive" class="collapse {{ Nav::isRoute('accounts.index') ? "show" : "" }} {{ Nav::isRoute('accounts.create') ? "show" : "" }}" aria-labelledby="headingFive" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('accounts.index') }}">Show</a>
+                        <a class="collapse-item" href="{{ route('accounts.create') }}">Create</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -66,21 +136,13 @@
                 </a>
             </li>
 
-            <!-- Nav Item - Settings -->
-            <li class="nav-item {{ Nav::isRoute('tasks') }}">
-                <a class="nav-link" href="{{ route('tasks') }}">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>{{ __('Tasks') }}</span>
-                </a>
-            </li>
-
             <!-- Nav Item - About -->
-            <li class="nav-item {{ Nav::isRoute('about') }}">
+            <!-- <li class="nav-item {{ Nav::isRoute('about') }}">
                 <a class="nav-link" href="{{ route('about') }}">
                     <i class="fas fa-fw fa-hands-helping"></i>
                     <span>{{ __('About') }}</span>
                 </a>
-            </li>
+            </li> -->
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -297,7 +359,8 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; <a href="https://github.com/aleckrh" target="_blank">Aleckrh</a> {{ now()->year }}</span>
+                        <!-- <span>Copyright &copy; <a href="https://github.com/aleckrh" target="_blank">Aleckrh</a> {{ now()->year }}</span> -->
+                        <span>Copyright &copy; Xloving {{ now()->year }}</span>
                     </div>
                 </div>
             </footer>
@@ -343,7 +406,205 @@
     <!-- Page level plugins -->
     <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
     <script>
-        let table = new DataTable('#myTable');
+        let table = new DataTable('#taskTable', {
+            searching: false,
+            pageLength: 25,
+            lengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            scrollX: true
+        });
+
+        let table2 = new DataTable('#orderTable', {
+            searching: false,
+            pageLength: 25,
+            lengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            scrollX: true,
+            order: [
+                [0, 'asc']
+            ],
+            columnDefs: [{
+                target: 0,
+                visible: true
+            }],
+            drawCallback: function() {
+                $('.btn-delete').click(function() {
+                    var app_id = $(this).parent().closest('tr').attr('id').replace("order-", "");
+                    $.ajax({
+                        url: "/orders/" + app_id,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        data: {
+                            // id: app_id
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(response) {
+                            console.log(response);
+                        }
+                    });
+                    $("#order-" + app_id).hide("slow");
+                    console.log("order-id: " + app_id);
+                });
+            }
+        });
+
+        let table3 = new DataTable('#unitTable', {
+            searching: false,
+            pageLength: 25,
+            lengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            scrollX: true,
+            drawCallback: function() {
+                $('.btn-edit').click(function() {
+                    var app_id = $(this).parent().closest('tr').attr('id').replace("unit-", "");
+                    window.location = "/units/" + app_id + "/edit/";
+                });
+
+                $('.btn-delete').click(function() {
+                    var app_id = $(this).parent().closest('tr').attr('id').replace("unit-", "");
+                    $.ajax({
+                        url: "/units/" + app_id,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        data: {
+                            // id: app_id
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(response) {
+                            console.log(response);
+                        }
+                    });
+                    $("#unit-" + app_id).hide("slow");
+                    console.log("unit-id: " + app_id);
+                });
+            }
+        });
+
+        let table4 = new DataTable('#proxyTable', {
+            searching: false,
+            pageLength: 25,
+            lengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            scrollX: true,
+            drawCallback: function() {
+                $('.btn-edit').click(function() {
+                    var app_id = $(this).parent().closest('tr').attr('id').replace("proxy-", "");
+                    window.location = "/proxies/" + app_id + "/edit/";
+                });
+
+                $('.btn-delete').click(function() {
+                    var app_id = $(this).parent().closest('tr').attr('id').replace("proxy-", "");
+                    $.ajax({
+                        url: "/proxy/" + app_id,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        data: {
+                            // id: app_id
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(response) {
+                            console.log(response);
+                        }
+                    });
+                    $("#proxy-" + app_id).hide("slow");
+                    console.log("proxy-id: " + app_id);
+                });
+            }
+        });
+
+        let table5 = new DataTable('#accountTable', {
+            searching: false,
+            pageLength: 25,
+            lengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            scrollX: true,
+            drawCallback: function() {
+                $('.btn-edit').click(function() {
+                    var app_id = $(this).parent().closest('tr').attr('id').replace("account-", "");
+                    window.location = "/accounts/" + app_id + "/edit/";
+                });
+
+                $('.btn-delete').click(function() {
+                    var app_id = $(this).parent().closest('tr').attr('id').replace("account-", "");
+                    $.ajax({
+                        url: "/accounts/" + app_id,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        data: {
+                            // id: app_id
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(response) {
+                            console.log(response);
+                        }
+                    });
+                    $("#account-" + app_id).hide("slow");
+                    console.log("account-id: " + app_id);
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $('#task_type').on('change', function() {
+            if ($(this).val() === "install") {
+                $(".install").show()
+            } else {
+                $(".install").hide();
+            }
+        });
+
+        $('#order_type').on('change', function() {
+            if ($(this).val() === "install") {
+                $(".install").show();
+                $(".allkind").show();
+            } else {
+                $(".install").hide();
+                $(".allkind").show();
+            }
+
+            if ($(this).val() === "tiktok") {
+                $(".tiktok").show();
+                $(".allkind").show();
+            } else {
+                $(".tiktok").hide();
+                $(".allkind").show();
+            }
+
+            if ($(this).val() === "youtube") {
+                $(".youtube").show();
+                $(".allkind").show();
+            } else {
+                $(".youtube").hide();
+                $(".allkind").show();
+            }
+
+            if ($(this).val() === "0") {
+                $(".allkind").hide();
+            }
+        });
     </script>
 </body>
 

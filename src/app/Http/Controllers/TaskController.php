@@ -19,4 +19,31 @@ class TaskController extends Controller
 
         return view('tasks', ['tasks' => $tasks]);
     }
+
+    public function create()
+    {
+        return view('tasks_create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'task_type' => 'required',
+            'app_name' => 'required'
+        ]);
+
+        $response = Http::post('https://x.fuckrkn.club/api/tasks', [
+            'unit_id' => 666,
+            'type' => $request->task_type,
+            'attempts' => $request->attempts,
+            'delay_min' => $request->delay_min,
+            'delay_max' => $request->delay_max,
+            'app_name' => $request->app_name,
+            'app_bundle' => $request->app_bundle,
+            'minutes' => $request->minutes,
+            'seconds' => $request->seconds,
+        ]);
+
+        return redirect()->route('tasks')->withSuccess('Task created successfully.');
+    }
 }
