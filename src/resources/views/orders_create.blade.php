@@ -406,10 +406,30 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-2 install" style="display: none;">
+                            <!-- <div class="col-lg-2 install" style="display: none;">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="open_time">Search term</label>
+                                    <label class="form-control-label" for="search_term">Search term</label>
                                     <input type="text" id="search_term" class="form-control" name="search_term">
+                                </div>
+                            </div> -->
+
+                            <div class="col-lg-2 install" style="display: none;">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="search_term">Search term</label>
+                                            <input type="text" id="search_term" class="form-control" name="search_term">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="search_term_null">Search null?</label>
+                                            <select class="form-control" name="search_term_null" id="search_term_null">
+                                                <option value="0">No</option>
+                                                <option value="1">Yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

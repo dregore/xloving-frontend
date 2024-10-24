@@ -121,7 +121,7 @@ class OrderController extends Controller
         $insert['backup_code_button'] = 'backup code';
         $insert['another_method_button'] = 'another way';
         $insert['search_field'] = 'Search';
-        $insert['search_scroll'] = 'Refine your search';
+        $insert['search_scroll'] = ($request->search_term_null == 1) ? null : 'Refine your search';
         $insert['install_button'] = 'Install';
         $insert['confirm_button'] = 'confirm';
         $insert['ok_button'] = 'ok_button';

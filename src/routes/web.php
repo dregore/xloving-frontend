@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,9 @@ Route::resource('proxies', ProxyController::class);
 Route::resource('orders', OrderController::class);
 
 Route::resource('accounts', AccountController::class);
+
+Route::get('/upload', [AccountController::class, 'fileUploadShow']);
+Route::post('/file-upload', [AccountController::class, 'fileUpload'])->name('accounts.upload');
 
 Route::get('/about', function () {
     return view('about');

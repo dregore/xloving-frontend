@@ -104,4 +104,35 @@ class AccountController extends Controller
     {
         $response = Http::delete('https://x.fuckrkn.club/api/accounts/' . $id);
     }
+
+    public function fileUpload(Request $request)
+    {
+        $request->validate([
+            'csv' => 'required|mimes:txt,zip|max:2048'
+        ]);
+
+        $file = $request->file('csv');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $filePath = $file->storeAs('uploads', $fileName, 'public');
+
+        $filePath2 = storage_path() . '/app/public/' . $filePath;
+        $photo = fopen($filePath2, 'r');
+
+        $response = Http::attach(
+            'csv',
+            $photo,
+            $file->getClientOriginalName()
+        )->post('https://x.fuckrkn.club/api/file-upload');
+
+        if ($response) {
+            return redirect()->route('accounts.index')->withSuccess('CSV with accounts uploaded successfully.');
+        }
+
+        return redirect()->route('accounts.index')->withError('CSV upload failed.');
+    }
+
+    public function fileUploadShow()
+    {
+        return view('fileupload');
+    }
 }

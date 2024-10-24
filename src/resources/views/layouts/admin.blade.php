@@ -5,8 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Laravel SB Admin 2">
-    <meta name="author" content="Alejandro RH">
+    <meta name="description" content="Xloving beta">
+    <meta name="author" content="Dregore">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -37,7 +37,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Xloving <sup>&beta;</sup></div>
             </a>
 
             <!-- Divider -->
@@ -170,6 +170,7 @@
                     </button>
 
                     <!-- Topbar Search -->
+                    <?/*?>
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -180,6 +181,7 @@
                             </div>
                         </div>
                     </form>
+                    <?*/ ?>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
