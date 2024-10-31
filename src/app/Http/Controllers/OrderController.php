@@ -53,7 +53,12 @@ class OrderController extends Controller
         $order->minutes = $request->minutes;
         $order->seconds = $request->seconds;
 
-        $order->retention = $request->retention;
+        $retention = $request->retention ?? 0;
+        if (is_array($request->retention)) {
+            $retention = implode(',', $request->retention);
+        }
+        $order->retention = $retention;
+
         $order->country = $request->country;
         $order->fill_type = $request->fill_type;
         $order->open_time = $request->open_time;
@@ -70,6 +75,7 @@ class OrderController extends Controller
 
         if ($request->order_type == 'install') {
             $order->deeplink_page = $request->deeplink_page ?? 0;
+            $order->scroll_duration = $request->scroll_duration ?? 30;
         }
 
         // if ($request->order_type == 'install') {
@@ -101,7 +107,7 @@ class OrderController extends Controller
             'minutes' => $request->minutes,
             'seconds' => $request->seconds,
 
-            'retention' => $request->retention,
+            'retention' => $retention,
             'country' => $request->country,
             'fill_type' => $request->fill_type,
             'open_time' => $request->open_time,
@@ -129,6 +135,7 @@ class OrderController extends Controller
         if ($request->order_type == 'install') {
             $insert['search_term'] = $request->search_term ?? $request->app_name;
             $insert['deeplink_page'] = $request->deeplink_page ?? 0;
+            $insert['scroll_duration'] = $request->scroll_duration ?? 30;
         }
 
         $response = Http::post('https://x.fuckrkn.club/api/tasks', $insert);

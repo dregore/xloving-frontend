@@ -37,7 +37,7 @@
                             <!-- <td>status</td> -->
                             <td>amount</td>
                             <td>type</td>
-                            <td>attempts</td>
+                            <td>Fill type</td>
                             <td>delay_min</td>
                             <td>delay_max</td>
                             <td>app_name</td>
@@ -58,7 +58,7 @@
                         <!-- <td>{{ $order['status'] ?? null }}</td> -->
                         <td>{{ $order['amount'] ?? null }}</td>
                         <td>{{ $order['type'] ?? null }}</td>
-                        <td>{{ $order['attempts'] ?? null }}</td>
+                        <td>{{ $order['fill_type'] ?? null }}</td>
                         <td>{{ $order['delay_min'] ?? null }}</td>
                         <td>{{ $order['delay_max'] ?? null }}</td>
                         <td>{{ $order['app_name'] ?? null }}</td>

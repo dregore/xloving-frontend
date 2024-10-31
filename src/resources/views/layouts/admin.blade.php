@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" rel="stylesheet">
 
     <!-- Favicon -->
@@ -405,8 +407,14 @@
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
     <!-- Page level plugins -->
     <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script>
+        $('#retention').select2({
+            theme: "bootstrap"
+        });
+    </script>
     <script>
         let table = new DataTable('#taskTable', {
             searching: false,
@@ -605,6 +613,14 @@
 
             if ($(this).val() === "0") {
                 $(".allkind").hide();
+            }
+        });
+
+        $('#fill_type').on('change', function() {
+            if ($(this).val() === "spread") {
+                $('#spread_days').prop('disabled', false);
+            } else {
+                $('#spread_days').prop('disabled', true);
             }
         });
     </script>

@@ -385,11 +385,36 @@
                             <div class="col-lg-2 install" style="display: none;">
                                 <div class="form-group">
                                     <label class="form-control-label" for="retention">Retention (days)</label>
-                                    <input type="number" id="retention" class="form-control" name="retention" step="1" value="1" max="100">
+                                    <!-- <input type="number" id="retention" class="form-control" name="retention" step="1" value="1" max="100"> -->
+                                    <select class="form-control" name="retention[]" id="retention" multiple="multiple">
+                                        @for ($i = 1; $i < 101; $i++)
+                                            <option value="{{$i}}">{{$i}} days</option>
+                                            @endfor
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="col-lg-2 install" style="display: none;">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="fill_type">Fill type</label>
+                                            <select class="form-control" name="fill_type" id="fill_type">
+                                                <option value="fast">Fast</option>
+                                                <option value="spread">Spread</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="spread_days">Spread days</label>
+                                            <input type="number" id="spread_days" class="form-control" name="spread_days" step="1" value="1" min="1" max="100" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-lg-2 install" style="display: none;">
                                 <div class="form-group">
                                     <label class="form-control-label">Fill type</label>
                                     <select class="form-control" name="fill_type" id="fill_type">
@@ -404,7 +429,7 @@
                                     <label class="form-control-label" for="open_time">Open time (mins)</label>
                                     <input type="text" id="open_time" class="form-control" name="open_time">
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- <div class="col-lg-2 install" style="display: none;">
                                 <div class="form-group">
@@ -440,6 +465,13 @@
                                         <option value="0">No</option>
                                         <option value="1">Yes</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 install" style="display: none;">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="scroll_duration">Scroll timeout</label>
+                                    <input type="number" id="scroll_duration" class="form-control" name="scroll_duration" step="1" value="30" min="30">
                                 </div>
                             </div>
                         </div>
