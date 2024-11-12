@@ -20,10 +20,11 @@ class AccountController extends Controller
 
     public function index()
     {
-        $response = Http::get('https://x.fuckrkn.club/api/accounts');
-        $accounts = $response->json();
+        // $response = Http::get('https://x.fuckrkn.club/api/accounts');
+        // $accounts = $response->json();
 
-        return view('accounts', ['accounts' => $accounts]);
+        // return view('accounts', ['accounts' => $accounts]);
+        return view('accounts');
     }
 
     public function create()
