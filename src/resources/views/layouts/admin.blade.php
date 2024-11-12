@@ -21,7 +21,8 @@
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" rel="stylesheet">
+    <link href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css" rel="stylesheet">
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
@@ -409,13 +410,31 @@
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <!-- Page level plugins -->
-    <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.dataTables.js"></script>
     <script>
         $('#retention').select2({
             theme: "bootstrap"
         });
     </script>
     <script>
+        buttonsConfig = ({
+            dom: {
+                button: {
+                    className: 'btn btn-primary newone-button mt-2'
+                }
+            },
+            buttons: [{
+                text: 'My button',
+                action: function(e, dt, node, config) {
+                    alert('Button activated');
+                }
+            }]
+        })
+        // $.extend($.fn.dataTable.defaults, {
+        //     dom: "<'row'<'col-sm-7 align-left'><'col-sm-2 text-right'f><'col-sm-3 text-right'>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-5'p><'col-sm-2 text-right'lB>>"
+        // });
         let table = new DataTable('#taskTable', {
             searching: false,
             pageLength: 25,
@@ -539,7 +558,56 @@
             }
         });
 
+        $('#accountTable').on('init.dt', function() {
+            $('.csv-load-button')
+                .attr('data-toggle', 'modal')
+                .attr('data-target', '#exampleModal');
+        });
+
+
         let table5 = new DataTable('#accountTable', {
+            columns: [{
+                    name: 'id'
+                },
+                {
+                    name: 'type'
+                },
+                {
+                    name: 'email'
+                },
+                {
+                    name: 'password'
+                },
+                {
+                    name: 'country'
+                },
+                {
+                    name: 'created_at'
+                },
+                {
+                    name: 'updated_at'
+                },
+                {
+                    name: 'backup_email'
+                },
+                {
+                    name: 'actions',
+                    orderable: false
+                }
+            ],
+            createdRow: function(row, data, dataIndex) {
+                let id = data[0];
+                $(row).prop('id', 'account-' + id);
+            },
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '/accounts/serverside',
+                type: 'POST',
+                data: function(d) {
+                    d._token = '{{ csrf_token() }}';
+                }
+            },
             searching: false,
             pageLength: 25,
             lengthMenu: [
@@ -547,6 +615,123 @@
                 [10, 25, 50, 100]
             ],
             scrollX: true,
+            layout: {
+                topEnd: {
+                    buttons: [{
+                        text: 'My button',
+                        className: 'csv-load-button btn btn-info',
+                        action: function(e, dt, node, config) {
+                            // alert('Button activated');
+                        }
+                    }]
+                }
+            },
+            initComplete: function() {
+                var btns = $('.dt-button');
+                btns.removeClass('dt-button');
+            },
+            drawCallback: function() {
+                $('.btn-edit').click(function() {
+                    var app_id = $(this).parent().closest('tr').attr('id').replace("account-", "");
+                    window.location = "/accounts/" + app_id + "/edit/";
+                });
+
+                $('.btn-delete').click(function() {
+                    var app_id = $(this).parent().closest('tr').attr('id').replace("account-", "");
+                    $.ajax({
+                        url: "/accounts/" + app_id,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        data: {
+                            // id: app_id
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(response) {
+                            console.log(response);
+                        }
+                    });
+                    $("#account-" + app_id).hide("slow");
+                    console.log("account-id: " + app_id);
+                });
+            }
+        });
+
+
+        $('#accountTable').on('init.dt', function() {
+            $('.csv-load-button')
+                .attr('data-toggle', 'modal')
+                .attr('data-target', '#exampleModal');
+        });
+
+
+        let table6 = new DataTable('#datatableTable', {
+            columns: [{
+                    name: 'id'
+                },
+                {
+                    name: 'type'
+                },
+                {
+                    name: 'email'
+                },
+                {
+                    name: 'password'
+                },
+                {
+                    name: 'country'
+                },
+                {
+                    name: 'created_at'
+                },
+                {
+                    name: 'updated_at'
+                },
+                {
+                    name: 'backup_email'
+                },
+                {
+                    name: 'actions',
+                    orderable: false
+                }
+            ],
+            createdRow: function(row, data, dataIndex) {
+                let id = data[0];
+                $(row).prop('id', 'account-' + id);
+            },
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '/serverside',
+                type: 'POST',
+                data: function(d) {
+                    d._token = '{{ csrf_token() }}';
+                }
+            },
+            searching: false,
+            pageLength: 25,
+            lengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            scrollX: true,
+            layout: {
+                topEnd: {
+                    buttons: [{
+                        text: 'My button',
+                        className: 'csv-load-button btn btn-info',
+                        action: function(e, dt, node, config) {
+                            // alert('Button activated');
+                        }
+                    }]
+                }
+            },
+            initComplete: function() {
+                var btns = $('.dt-button');
+                btns.removeClass('dt-button');
+            },
             drawCallback: function() {
                 $('.btn-edit').click(function() {
                     var app_id = $(this).parent().closest('tr').attr('id').replace("account-", "");
@@ -613,6 +798,24 @@
 
             if ($(this).val() === "0") {
                 $(".allkind").hide();
+            }
+
+            if ($(this).val() === "import_chrome_cookies") {
+                $(".import_chrome_cookies").show();
+                $(".nocookie").hide();
+            } else {
+                $(".import_chrome_cookies").hide();
+                $(".nocookie").show();
+            }
+
+            if ($(this).val() === "export_chrome_cookies") {
+                $(".import_chrome_cookies").show();
+                $(".export_chrome_cookies").show();
+                $(".nocookie").hide();
+            } else {
+                $(".import_chrome_cookies").hide();
+                $(".export_chrome_cookies").hide();
+                $(".nocookie").show();
             }
         });
 

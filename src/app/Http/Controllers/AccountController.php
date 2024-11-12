@@ -116,11 +116,11 @@ class AccountController extends Controller
         $filePath = $file->storeAs('uploads', $fileName, 'public');
 
         $filePath2 = storage_path() . '/app/public/' . $filePath;
-        $photo = fopen($filePath2, 'r');
+        $csv = fopen($filePath2, 'r');
 
         $response = Http::attach(
             'csv',
-            $photo,
+            $csv,
             $file->getClientOriginalName()
         )->post('https://x.fuckrkn.club/api/file-upload');
 
@@ -134,5 +134,16 @@ class AccountController extends Controller
     public function fileUploadShow()
     {
         return view('fileupload');
+    }
+
+    public function serverside(Request $request)
+    {
+        $response = Http::post(
+            'https://x.fuckrkn.club/api/accounts/serverside/',
+            $request
+        );
+        $accounts = $response->json();
+
+        return $accounts;
     }
 }

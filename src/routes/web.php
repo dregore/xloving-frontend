@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\DatatableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,9 +45,13 @@ Route::resource('proxies', ProxyController::class);
 Route::resource('orders', OrderController::class);
 
 Route::resource('accounts', AccountController::class);
+Route::post('/accounts/serverside', [AccountController::class, 'serverside']);
 
 Route::get('/upload', [AccountController::class, 'fileUploadShow']);
 Route::post('/file-upload', [AccountController::class, 'fileUpload'])->name('accounts.upload');
+
+Route::get('/datatables', [DatatableController::class, 'index']);
+Route::post('/serverside', [DatatableController::class, 'serverside']);
 
 Route::get('/about', function () {
     return view('about');

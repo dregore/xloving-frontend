@@ -30,7 +30,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders_create');
+        $response = Http::get('https://x.fuckrkn.club/api/cookies')->collect();
+        return view('orders_create', ['xcookies' => $response]);
     }
 
     /**
@@ -111,6 +112,7 @@ class OrderController extends Controller
             'country' => $request->country,
             'fill_type' => $request->fill_type,
             'open_time' => $request->open_time,
+            'spread_days' => $request->spread_days,
         ];
 
         if ($request->order_type == 'tiktok') {

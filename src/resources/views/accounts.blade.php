@@ -37,33 +37,41 @@
                             <td>email</td>
                             <td>password</td>
                             <td>country</td>
-                            <td>created_at</td>
-                            <td>updated_at</td>
-                            <td>backup_email</td>
+                            <td>created at</td>
+                            <td>updated at</td>
+                            <td>backup email</td>
                             <td>actions</td>
                         </tr>
                     </thead>
-                    @foreach($accounts['data'] as $item)
-                    <tr id="account-{{ $item['id'] ?? null }}">
-                        <td>{{ $item['id'] ?? null }}</td>
-                        <td>{{ $item['type'] ?? null }}</td>
-                        <td>{{ $item['email'] ?? null }}</td>
-                        <td>{{ $item['password'] ?? null }}</td>
-                        <td>{{ $item['country'] ?? null }}</td>
-                        <td>{{ $item['created_at'] ?? null }}</td>
-                        <td>{{ $item['updated_at'] ?? null }}</td>
-                        <td>{{ $item['backup_email'] ?? null }}</td>
-                        <!-- <td>{{ $item['unit_id'] ?? null }}</td> -->
-                        <td>
-                            <button class="btn btn-info btn-edit" type="button">Edit</button>
-                            <button class="btn btn-danger btn-delete" type="button">Delete</button>
-                        </td>
-                    </tr>
-                    @endforeach
+                    <tbody>
+
+                    </tbody>
                 </table>
             </div>
         </div>
 
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <form id="form" method="POST" action="{{ route('accounts.upload') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">CSV account loader</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="file" id="csv" name="csv" class="form-control form-control-sm" required />
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="submit">Upload</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 

@@ -46,6 +46,8 @@
                                         <option value="install">Install App</option>
                                         <option value="tiktok">Tiktok</option>
                                         <option value="youtube">Youtube</option>
+                                        <!-- <option value="import_chrome_cookies">import_chrome_cookies</option> -->
+                                        <!-- <option value="export_chrome_cookies">export_chrome_cookies</option> -->
                                     </select>
                                 </div>
                             </div>
@@ -117,6 +119,20 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <!-- export_chrome_cookies order -->
+                            <?/* */ ?>
+                            <div class="col-lg-2 export_chrome_cookies" style="display: none;">
+                                <div class="form-group">
+                                    <label class="form-control-label">Cookies</label>
+                                    <select class="form-control" name="cookies" id="cookies">
+                                        @foreach($xcookies['data'] as $item)
+                                        <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <?/**/ ?>
                         </div>
 
                         <div class="row">
@@ -490,25 +506,25 @@
                                     <input type="number" id="attempts" class="form-control" name="attempts" step="1" value="3">
                                 </div>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 nocookie">
                                 <div class="form-group">
                                     <label class="form-control-label" for="delay_min">Delay min</label>
                                     <input type="number" id="delay_min" class="form-control" name="delay_min" step="1" value="1">
                                 </div>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 nocookie">
                                 <div class="form-group">
                                     <label class="form-control-label" for="delay_max">Delay max</label>
                                     <input type="number" id="delay_max" class="form-control" name="delay_max" step="1" value="4">
                                 </div>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 nocookie">
                                 <div class="form-group">
                                     <label class="form-control-label" for="minutes">Minutes</label>
                                     <input type="number" id="minutes" class="form-control" name="minutes" step="1" value="1">
                                 </div>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 nocookie">
                                 <div class="form-group">
                                     <label class="form-control-label" for="seconds">Seconds</label>
                                     <input type="number" id="seconds" class="form-control" name="seconds" step="1" value="23">
