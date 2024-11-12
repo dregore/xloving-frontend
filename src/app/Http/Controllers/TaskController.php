@@ -14,10 +14,11 @@ class TaskController extends Controller
 
     public function index()
     {
-        $response = Http::get('https://x.fuckrkn.club/api/tasks');
-        $tasks = $response->json();
+        // $response = Http::get('https://x.fuckrkn.club/api/tasks');
+        // $tasks = $response->json();
 
-        return view('tasks', ['tasks' => $tasks]);
+        // return view('tasks', ['tasks' => $tasks]);
+        return view('tasks');
     }
 
     public function create()
@@ -45,5 +46,16 @@ class TaskController extends Controller
         ]);
 
         return redirect()->route('tasks')->withSuccess('Task created successfully.');
+    }
+
+    public function serverside(Request $request)
+    {
+        $response = Http::post(
+            'https://x.fuckrkn.club/api/tasks/serverside/',
+            $request
+        );
+        $accounts = $response->json();
+
+        return $accounts;
     }
 }

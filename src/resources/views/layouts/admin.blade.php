@@ -73,9 +73,9 @@
                     <i class="fas fa-fw fa-tasks"></i>
                     <span>{{ __('Tasks') }}</span>
                 </a>
-                <div id="mainOne" class="collapse {{ Nav::isRoute('tasks') ? "show" : "" }} {{ Nav::isRoute('tasks.create') ? "show" : "" }}" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                <div id="mainOne" class="collapse {{ Nav::isRoute('tasks.index') ? "show" : "" }} {{ Nav::isRoute('tasks.create') ? "show" : "" }}" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('tasks') }}">Show</a>
+                        <a class="collapse-item" href="{{ route('tasks.index') }}">Show</a>
                         <!-- <a class="collapse-item" href="{{ route('tasks.create') }}">Create</a> -->
                     </div>
                 </div>
@@ -436,6 +436,59 @@
         //     dom: "<'row'<'col-sm-7 align-left'><'col-sm-2 text-right'f><'col-sm-3 text-right'>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-5'p><'col-sm-2 text-right'lB>>"
         // });
         let table = new DataTable('#taskTable', {
+            columns: [{
+                    name: 'id'
+                },
+                {
+                    name: 'unit_id'
+                },
+                {
+                    name: 'status'
+                },
+                {
+                    name: 'type'
+                },
+                {
+                    name: 'attempts'
+                },
+                {
+                    name: 'delay_min'
+                },
+                {
+                    name: 'delay_max'
+                },
+                {
+                    name: 'app_name'
+                },
+                {
+                    name: 'app_bundle'
+                },
+                {
+                    name: 'delete'
+                },
+                {
+                    name: 'minutes'
+                },
+                {
+                    name: 'seconds'
+                },
+                {
+                    name: 'like'
+                }
+            ],
+            createdRow: function(row, data, dataIndex) {
+                let id = data[0];
+                $(row).prop('id', 'task-' + id);
+            },
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '/tasks/serverside',
+                type: 'POST',
+                data: function(d) {
+                    d._token = '{{ csrf_token() }}';
+                }
+            },
             searching: false,
             pageLength: 25,
             lengthMenu: [

@@ -37,33 +37,19 @@
                             <td>status</td>
                             <td>type</td>
                             <td>attempts</td>
-                            <td>delay_min</td>
-                            <td>delay_max</td>
-                            <td>app_name</td>
-                            <td>app_bundle</td>
+                            <td>delay min</td>
+                            <td>delay max</td>
+                            <td>app name</td>
+                            <td>app bundle</td>
                             <td>delete</td>
                             <td>minutes</td>
                             <td>seconds</td>
                             <td>like</td>
                         </tr>
                     </thead>
-                    @foreach($tasks['data'] as $task)
-                    <tr>
-                        <td>{{ $task['task']['id'] ?? null }}</td>
-                        <td>{{ $task['task']['unit_id'] ?? null }}</td>
-                        <td>{{ $task['task']['status'] ?? null }}</td>
-                        <td>{{ $task['task']['type'] ?? null }}</td>
-                        <td>{{ $task['task']['attempts'] ?? null }}</td>
-                        <td>{{ $task['task']['delay_min'] ?? null }}</td>
-                        <td>{{ $task['task']['delay_max'] ?? null }}</td>
-                        <td>{{ $task['task']['app_name'] ?? null }}</td>
-                        <td>{{ $task['task']['app_bundle'] ?? null }}</td>
-                        <td>{{ $task['task']['delete'] ?? null }}</td>
-                        <td>{{ $task['task']['minutes'] ?? null }}</td>
-                        <td>{{ $task['task']['seconds'] ?? null }}</td>
-                        <td>{{ $task['task']['like'] ?? null }}</td>
-                    </tr>
-                    @endforeach
+                    <tbody>
+
+                    </tbody>
                 </table>
             </div>
         </div>
