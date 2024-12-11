@@ -75,6 +75,7 @@ class OrderController extends Controller
         }
 
         if ($request->order_type == 'install') {
+            $order->search_term = $request->search_term ?? $request->app_name;
             $order->deeplink_page = $request->deeplink_page ?? 0;
             $order->scroll_duration = $request->scroll_duration ?? 30;
         }

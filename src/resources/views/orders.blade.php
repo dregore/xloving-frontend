@@ -37,12 +37,14 @@
                             <!-- <td>status</td> -->
                             <td>amount</td>
                             <td>type</td>
+                            <td>Country</td>
                             <td>Fill type</td>
                             <td>delay_min</td>
                             <td>delay_max</td>
                             <td>app_name</td>
                             <td>app_bundle</td>
                             <td>url</td>
+                            <td>Search Term</td>
                             <td>delete</td>
                             <td>minutes</td>
                             <td>seconds</td>
@@ -58,12 +60,14 @@
                         <!-- <td>{{ $order['status'] ?? null }}</td> -->
                         <td>{{ $order['amount'] ?? null }}</td>
                         <td>{{ $order['type'] ?? null }}</td>
+                        <td>{{ $order['country'] ?? null }}</td>
                         <td>{{ $order['fill_type'] ?? null }}</td>
                         <td>{{ $order['delay_min'] ?? null }}</td>
                         <td>{{ $order['delay_max'] ?? null }}</td>
                         <td>{{ $order['app_name'] ?? null }}</td>
                         <td>{{ $order['app_bundle'] ?? null }}</td>
                         <td>{{ $order['url'] ?? null }}</td>
+                        <td>{{ $order['search_term'] ?? null }}</td>
                         <td>{{ $order['delete'] ?? null }}</td>
                         <td>{{ $order['minutes'] ?? null }}</td>
                         <td>{{ $order['seconds'] ?? null }}</td>
