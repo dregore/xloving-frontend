@@ -6,7 +6,7 @@ COPY .bashrc /root/
 
 # mix
 RUN apt-get update \
-  && apt-get install -y build-essential zlib1g-dev default-mysql-client curl gnupg procps vim nano git unzip libzip-dev libpq-dev \
+  && apt-get install -y build-essential zlib1g-dev default-mysql-client curl gnupg procps vim nano git unzip libzip-dev libpq-dev automysqlbackup \
   && docker-php-ext-install zip pdo_mysql pdo_pgsql pgsql
 
 # intl
@@ -57,6 +57,7 @@ WORKDIR /var/www/html
 RUN groupadd -g 1000 dregore
 RUN useradd -u 1000 -g dregore dregore
 COPY --chown=www-data:www-data . /var/www/html
-USER dregore
+# COPY automysqlbackup.conf /etc/default/automysqlbackup
+# USER dregore
 
 # EXPOSE 5173
