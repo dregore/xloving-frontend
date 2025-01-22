@@ -136,6 +136,45 @@
                         </div>
 
                         <div class="row">
+                            <div class="col-lg-2 install" style="display: none;">
+                                <div class="form-group">
+                                    <label class="form-control-label">Review?</label>
+                                    <select class="form-control" name="install_review" id="install_review">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 install" id="rage" style="display: none;">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="customRange2">Review's percents</label>
+                                    <input type="range" class="form-control" min="0" max="100" id="customRange2" name="customRange2" value="50" oninput="this.nextElementSibling.value = this.value">
+                                    <output>50</output>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 install" id="rate" style="display: none;">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="rating">Rating</label>
+                                    <br />
+                                    <div class="rate">
+                                        <input type="radio" id="star5" class="rate" name="rating" value="5" />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" class="rate" name="rating" value="4" />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" class="rate" name="rating" value="3" />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" class="rate" name="rating" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" class="rate" name="rating" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-lg-2 allkind" style="display: none;">
                                 <div class="form-group">
                                     <label class="form-control-label">Country</label>

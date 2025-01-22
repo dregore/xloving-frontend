@@ -141,6 +141,12 @@ class OrderController extends Controller
             $insert['scroll_duration'] = $request->scroll_duration ?? 30;
         }
 
+        if ($request->install_review == 1) {
+            $insert['review'] = $request->install_review;
+            $insert['review_rate'] = $request->rating;
+            $insert['review_amount'] = $request->customRange2;
+        }
+
         $response = Http::post('https://x.fuckrkn.club/api/tasks', $insert);
 
         return redirect()->route('orders.index')->with('success', 'Order created successfully.');

@@ -24,6 +24,117 @@
     <link href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css" rel="stylesheet">
 
+    <style>
+        .rate {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+
+        .rate:not(:checked)>input {
+            position: absolute;
+            display: none;
+        }
+
+        .rate:not(:checked)>label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ccc;
+        }
+
+        .rated:not(:checked)>label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ccc;
+        }
+
+        .rate:not(:checked)>label:before {
+            content: '★ ';
+        }
+
+        .rate>input:checked~label {
+            color: #ffc700;
+        }
+
+        .rate:not(:checked)>label:hover,
+        .rate:not(:checked)>label:hover~label {
+            color: #deb217;
+        }
+
+        .rate>input:checked+label:hover,
+        .rate>input:checked+label:hover~label,
+        .rate>input:checked~label:hover,
+        .rate>input:checked~label:hover~label,
+        .rate>label:hover~input:checked~label {
+            color: #c59b08;
+        }
+
+        .star-rating-complete {
+            color: #c59b08;
+        }
+
+        .rating-container .form-control:hover,
+        .rating-container .form-control:focus {
+            background: #fff;
+            border: 1px solid #ced4da;
+        }
+
+        .rating-container textarea:focus,
+        .rating-container input:focus {
+            color: #000;
+        }
+
+        .rated {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+
+        .rated:not(:checked)>input {
+            position: absolute;
+            display: none;
+        }
+
+        .rated:not(:checked)>label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ffc700;
+        }
+
+        .rated:not(:checked)>label:before {
+            content: '★ ';
+        }
+
+        .rated>input:checked~label {
+            color: #ffc700;
+        }
+
+        .rated:not(:checked)>label:hover,
+        .rated:not(:checked)>label:hover~label {
+            color: #deb217;
+        }
+
+        .rated>input:checked+label:hover,
+        .rated>input:checked+label:hover~label,
+        .rated>input:checked~label:hover,
+        .rated>input:checked~label:hover~label,
+        .rated>label:hover~input:checked~label {
+            color: #c59b08;
+        }
+    </style>
+
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
 </head>
@@ -833,6 +944,9 @@
                 $(".allkind").show();
             }
 
+            $('#rage').hide();
+            $('#rate').hide();
+
             if ($(this).val() === "tiktok") {
                 $(".tiktok").show();
                 $(".allkind").show();
@@ -877,6 +991,18 @@
                 $('#spread_days').prop('disabled', false);
             } else {
                 $('#spread_days').prop('disabled', true);
+            }
+        });
+
+        $('#install_review').on('change', function() {
+            if ($(this).val() == 0) {
+                // $('#customRange2').prop('disabled', true);
+                $('#rage').hide();
+                $('#rate').hide();
+            } else {
+                // $('#customRange2').prop('disabled', false);
+                $('#rage').show();
+                $('#rate').show();
             }
         });
     </script>
